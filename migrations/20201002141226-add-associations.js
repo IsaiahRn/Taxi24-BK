@@ -11,6 +11,7 @@ const associations = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
+        underscore: true
       },
     );
   },

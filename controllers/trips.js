@@ -14,15 +14,21 @@ class TripController {
       const {
         startLocation, endLocation, driverId, riderId,
       } = req.body;
-      await Trip.create({
+      const tripDetails = await Trip.create({
         startLocation,
         endLocation,
         driverId,
         riderId,
       });
-      return res.status(200).send({ message: 'Trip created successfully' });
+      return res.status(200).json({
+        message: 'Trip created successfully',
+        tripDetails
+      });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to create a trip',
+        error
+      });
     }
   }
 
@@ -45,14 +51,17 @@ class TripController {
         { returning: true, where: { id: req.params.id } },
       );
 
-      await Invoice.create({
+      const invoice = await Invoice.create({
         amount,
         tripId: id,
       });
 
-      return res.status(200).send({ completedTrip, amount });
+      return res.status(200).send({ completedTrip, amount, invoice });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to complete a trip',
+        error
+      });
     }
   }
 
@@ -61,9 +70,15 @@ class TripController {
   static async fetchAllActiveTrip(req, res) {
     try {
       const activeTrip = await Trip.findAll({ where: { completed: true } });
-      return res.status(200).send(activeTrip);
+      return res.status(200).json({
+        message: 'successfully returned active trips',
+        activeTrip
+      });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to fetch all active trip',
+        error
+      });
     }
   }
 }
