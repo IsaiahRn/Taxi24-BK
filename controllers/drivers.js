@@ -13,28 +13,38 @@ class DriverController {
   // List of all drivers
   static async fetchAllDrivers(req, res) {
     try {
-      const riders = await Driver.findAll({
-        attributes: ['id', 'names']
-      });
-      return res.status(200).send(riders);
+      const drivers = await Driver.findAll();
+      return res.status(200).json({
+        message: 'successfully returned all drivers',
+        drivers
+      })
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to fetch all drivers',
+        error
+      });
     }
   }
 
   // Get a list of all available drivers
   static async fetchAvailableDrivers(req, res) {
     try {
-      const availableRiders = await Driver.findAll({
+      const availableDrivers = await Driver.findAll({
         where: { available: true },
         include: [
           { model: Location, attributes: ['id', 'name', 'latitude', 'longitude'] },
         ],
         attributes: ['id', 'names'],
       });
-      return res.status(200).send(availableRiders);
+      return res.status(200).json({
+        message: 'successfully returned available drivers',
+        availableDrivers
+      });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+       errorMsg: 'failed to fetch available drivers',
+       error 
+      });
     }
   }
 
@@ -67,9 +77,15 @@ class DriverController {
         return res.status(404)
           .send({ message: 'No drivers available within 3 Km' });
       }
-      return res.status(200).send(available);
+      return res.status(200).json({
+        message: 'successfully returned nearest drivers',
+        availableNear3KmLocation
+      });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to fetch nearest drivers',
+        error
+      });
     }
   }
 
@@ -82,9 +98,15 @@ class DriverController {
         return res.status(404)
           .send({ message: 'No drivers with that ID found' });
       }
-      return res.status(200).send(specifDriver);
+      return res.status(200).json({
+        message: 'successfully returned a driver',
+        specifDriver
+      });
     } catch (error) {
-      return res.status(500).send(error);
+      return res.status(500).json({
+        errorMsg: 'failed to fetch driver',
+        error
+      });
     }
   }
 }
