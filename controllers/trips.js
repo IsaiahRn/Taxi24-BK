@@ -22,12 +22,12 @@ class TripController {
       });
       return res.status(200).json({
         message: 'Trip created successfully',
-        tripDetails
+        tripDetails,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to create a trip',
-        error
+        error,
       });
     }
   }
@@ -60,7 +60,7 @@ class TripController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to complete a trip',
-        error
+        error,
       });
     }
   }
@@ -72,12 +72,12 @@ class TripController {
       const activeTrip = await Trip.findAll({ where: { completed: true } });
       return res.status(200).json({
         message: 'successfully returned active trips',
-        activeTrip
+        activeTrip,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch all active trip',
-        error
+        error,
       });
     }
   }

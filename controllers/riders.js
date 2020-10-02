@@ -11,19 +11,18 @@ const { Rider, Driver, Location } = models;
  * @description Handles all related riders functionalities
  * */
 class RiderController {
-
   // Fetch(Get) all riders
   static async fetchAllRiders(req, res) {
     try {
       const riders = await Rider.findAll();
       return res.status(200).json({
         message: 'successfully returned riders',
-        riders
+        riders,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch riders',
-        error
+        error,
       });
     }
   }
@@ -36,12 +35,12 @@ class RiderController {
       });
       return res.status(200).json({
         message: 'successfully returned a rider',
-        specifRider
+        specifRider,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch rider',
-        error
+        error,
       });
     }
   }
@@ -57,7 +56,7 @@ class RiderController {
         ],
         attributes: ['id', 'names'],
       });
-      
+
       if (providedRider.length === 0) {
         return res.status(404)
           .send({ message: 'Provided Riders not found!' });
@@ -67,7 +66,7 @@ class RiderController {
         include: [
           { model: Location, attributes: ['id', 'name', 'latitude', 'longitude'] },
         ],
-        attributes: [ 'names'],
+        attributes: ['names'],
       });
 
       const closest = allRiders.filter((rider) => {
@@ -88,12 +87,12 @@ class RiderController {
       }
       return res.status(200).json({
         message: 'successfully returned 3 closest drivers',
-        closest
+        closest,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch 3 closest drivers',
-        error
+        error,
       });
     }
   }

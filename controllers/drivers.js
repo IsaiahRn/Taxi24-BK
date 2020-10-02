@@ -16,12 +16,12 @@ class DriverController {
       const drivers = await Driver.findAll();
       return res.status(200).json({
         message: 'successfully returned all drivers',
-        drivers
-      })
+        drivers,
+      });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch all drivers',
-        error
+        error,
       });
     }
   }
@@ -38,12 +38,12 @@ class DriverController {
       });
       return res.status(200).json({
         message: 'successfully returned available drivers',
-        availableDrivers
+        availableDrivers,
       });
     } catch (error) {
       return res.status(500).json({
-       errorMsg: 'failed to fetch available drivers',
-       error 
+        errorMsg: 'failed to fetch available drivers',
+        error,
       });
     }
   }
@@ -55,7 +55,7 @@ class DriverController {
       const { latitude, longitude } = req.query;
       if (!latitude || !longitude) {
         return res.status(400)
-          .send({ message: 'location details are invalid' });
+          .json({ message: 'location details are invalid' });
       }
       const available = await Driver.findAll({
         where: { available: true },
@@ -75,37 +75,37 @@ class DriverController {
       });
       if (availableNear3KmLocation.length === 0) {
         return res.status(404)
-          .send({ message: 'No drivers available within 3 Km' });
+          .json({ message: 'No drivers available within 3 Km' });
       }
       return res.status(200).json({
         message: 'successfully returned nearest drivers',
-        availableNear3KmLocation
+        availableNear3KmLocation,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch nearest drivers',
-        error
+        error,
       });
     }
   }
 
   static async fetchDriverById(req, res) {
     try {
-      const specifDriver = await Driver.findOne({
+      const specificDriver = await Driver.findOne({
         where: { id: req.params.id },
       });
-      if (!specifDriver) {
+      if (!specificDriver) {
         return res.status(404)
-          .send({ message: 'No drivers with that ID found' });
+          .json({ message: 'No drivers with that ID found' });
       }
       return res.status(200).json({
         message: 'successfully returned a driver',
-        specifDriver
+        specificDriver,
       });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch driver',
-        error
+        error,
       });
     }
   }
