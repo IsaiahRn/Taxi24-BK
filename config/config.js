@@ -1,23 +1,28 @@
+require('dotenv').config();
 
-const config = {
+
+module.exports = {
   development: {
-    use_env_variable: 'DATABASE_URL',
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
-  production: {
-    use_env_variable: 'DATABASE_URL',
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'postgres',
-  },
-};
 
-module.exports = config;
+  test: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    host: process.env.DB_HOST,
+    dialect: 'postgres'
+  },
+
+  production: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    host: process.env.DB_HOST,
+    dialect: 'postgres'
+  }
+};

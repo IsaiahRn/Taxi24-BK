@@ -4,7 +4,7 @@
   "description": "Taxi24 is a new startup based in Kigali",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec  node --require @babel/register --require dotenv/config server.js",
+    "start": "nodemon --exec  node --require @babel/register --require dotenv/config app.js",
     "start:prod": "NODE_ENV=production npm run migrate && node --require @babel/register --require dotenv/config ./server.js",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
