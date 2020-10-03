@@ -14,7 +14,7 @@ const tripData = {
 
 describe('TRIP API', () => {
   describe('/POST trips', () => {
-    it('should create a trip', (done) => {
+    it('should create a trip', () => {
       chai.request(app)
         .post('/api/v1/trips')
         .send(tripData)
@@ -24,13 +24,12 @@ describe('TRIP API', () => {
           expect(body).to.have.property('message');
           expect(body).to.have.property('tripDetails');
           expect(body.message).to.equals('Trip created successfully');
-          done();
         });
     });
   });
 
   describe('/PUT trips', () => {
-    it('should complete a trip', (done) => {
+    it('should complete a trip', () => {
       chai.request(app)
         .put('/api/v1/trips/complete/2/5000')
         .end((err, res) => {
@@ -39,13 +38,12 @@ describe('TRIP API', () => {
           expect(body).to.have.property('completedTrip');
           expect(body).to.have.property('amount');
           expect(body).to.have.property('invoice');
-          done();
         });
     });
   });
 
   describe('/GET trips', () => {
-    it('should get 3 closest drivers', (done) => {
+    it('should get 3 closest drivers', () => {
       chai.request(app)
         .get('/api/v1/trips/active')
         .end((err, res) => {
@@ -60,7 +58,6 @@ describe('TRIP API', () => {
           expect(body.activeTrip[0]).to.have.property('riderId');
           expect(body.activeTrip[0]).to.have.property('completed');
           expect(body.message).to.equals('successfully returned active trips');
-          done();
         });
     });
   });

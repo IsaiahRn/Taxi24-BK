@@ -7,7 +7,7 @@ const { expect } = chai;
 
 describe('RIDER API', () => {
   describe('/GET riders', () => {
-    it('should get All riders', (done) => {
+    it('should get All riders', () => {
       chai.request(app)
         .get('/api/v1/riders')
         .end((err, res) => {
@@ -16,13 +16,12 @@ describe('RIDER API', () => {
           expect(body).to.have.property('message');
           expect(body).to.have.property('riders');
           expect(body.message).to.equals('successfully returned riders');
-          done();
         });
     });
   });
 
   describe('/GET riders', () => {
-    it('should get a single rider', (done) => {
+    it('should get a single rider', () => {
       chai.request(app)
         .get('/api/v1/riders/2')
         .end((err, res) => {
@@ -30,13 +29,12 @@ describe('RIDER API', () => {
           expect(status).to.equal(200);
           expect(body).to.have.property('message');
           expect(body).to.have.property('specifRider');
-          done();
         });
     });
   });
 
   describe('/GET riders', () => {
-    it('should get closest riders', (done) => {
+    it('should get closest riders', () => {
       chai.request(app)
         .get('/api/v1/riders/near/Peter')
         .end((err, res) => {
@@ -47,7 +45,6 @@ describe('RIDER API', () => {
           expect(body.closest[0]).to.have.property('names');
           expect(body.closest[0]).to.have.property('Location');
           expect(body.message).to.equals('successfully returned 3 closest drivers');
-          done();
         });
     });
   });
