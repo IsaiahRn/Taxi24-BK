@@ -1,10 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import model from '../models';
 import app from '../app';
 
 const should = chai.should();
-// const { Driver } = model;
 
 chai.use(chaiHttp);
 const { expect } = chai;
