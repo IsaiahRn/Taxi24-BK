@@ -13,6 +13,12 @@ const DriverSeeder = {
       createdAt: new Date().toDateString(),
       updatedAt: new Date().toDateString(),
     }, {
+      names: 'Kwizera',
+      available: true,
+      LocationId: 5,
+      createdAt: new Date().toDateString(),
+      updatedAt: new Date().toDateString(),
+    }, {
       names: 'Patrick',
       available: true,
       LocationId: 3,

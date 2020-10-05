@@ -49,7 +49,7 @@ describe('Driver API', () => {
   describe('/GET drivers', () => {
     it('should get a list of all available drivers within 3 km', () => {
       chai.request(app)
-        .get('/api/v1/drivers/availableNear?latitude=1.9062&longitude=30.1737')
+        .get('/api/v1/drivers/availableNear?latitude=1.9006&longitude=30.0759')
         .end((err, res) => {
           const { status, body } = res;
           expect(status).to.equal(200);

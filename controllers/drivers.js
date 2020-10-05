@@ -21,7 +21,6 @@ class DriverController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch all drivers',
-        error,
       });
     }
   }
@@ -43,7 +42,6 @@ class DriverController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch available drivers',
-        error,
       });
     }
   }
@@ -68,10 +66,10 @@ class DriverController {
         const {
           latitude: latitudeToCompare, longitude: longitudeToCompare,
         } = driver.dataValues.Location.dataValues;
-        if (Util.getWithIn3Km(latitude, longitude, latitudeToCompare, longitudeToCompare)) {
+        if (Util.getWithIn3Km(latitude, longitude, latitudeToCompare, longitudeToCompare) <= 3) {
           return driver;
         }
-        return {};
+        return 0;
       });
       if (availableNear3KmLocation.length === 0) {
         return res.status(404)
@@ -84,7 +82,6 @@ class DriverController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch nearest drivers',
-        error,
       });
     }
   }
@@ -105,7 +102,6 @@ class DriverController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch driver',
-        error,
       });
     }
   }

@@ -12,6 +12,10 @@ const tripData = {
   riderId: 1,
 };
 
+const tripCompleteData = {
+  amount: 2000,
+};
+
 describe('TRIP API', () => {
   describe('/POST trips', () => {
     it('should create a trip', () => {
@@ -31,8 +35,10 @@ describe('TRIP API', () => {
   describe('/PUT trips', () => {
     it('should complete a trip', () => {
       chai.request(app)
-        .put('/api/v1/trips/complete/2/5000')
+        .put('/api/v1/trips/complete/2')
+        .send(tripCompleteData)
         .end((err, res) => {
+          console.log(err);
           const { status, body } = res;
           expect(status).to.equal(200);
           expect(body).to.have.property('completedTrip');

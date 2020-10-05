@@ -22,7 +22,6 @@ class RiderController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch riders',
-        error,
       });
     }
   }
@@ -40,7 +39,6 @@ class RiderController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch rider',
-        error,
       });
     }
   }
@@ -73,13 +71,14 @@ class RiderController {
         const {
           latitude: latitudeToCompare, longitude: longitudeToCompare,
         } = rider.dataValues.Location.dataValues;
-        if ((providedRider[0].id !== rider.dataValues.id) && Util.getWithIn3Km(
+        const checkDistance = Util.getWithIn3Km(
           providedRider[0].Location.latitude, providedRider[0].Location.longitude,
           latitudeToCompare, longitudeToCompare,
-        )) {
+        );
+        if ((providedRider[0].id !== rider.dataValues.id) && (checkDistance <= 3)) {
           return rider;
         }
-        return {};
+        return 0;
       });
       if (closest.length === 0) {
         return res.status(404)
@@ -92,7 +91,6 @@ class RiderController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch 3 closest drivers',
-        error,
       });
     }
   }

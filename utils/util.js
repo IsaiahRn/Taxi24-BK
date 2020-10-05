@@ -1,4 +1,4 @@
-import * as geolib from 'geolib';
+import geodist from 'geodist';
 
 /**
  * @exports Util
@@ -7,10 +7,10 @@ import * as geolib from 'geolib';
  * */
 class Util {
   static getWithIn3Km(enteredLatitude, enteredLongitude, targetLatitude, targetLongitude) {
-    return geolib.isPointWithinRadius(
+    return geodist(
       { latitude: enteredLatitude, longitude: enteredLongitude },
       { latitude: targetLatitude, longitude: targetLongitude },
-      3000,
+      { exact: true, unit: 'km' },
     );
   }
 }

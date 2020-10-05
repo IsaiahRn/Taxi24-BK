@@ -27,7 +27,6 @@ class TripController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to create a trip',
-        error,
       });
     }
   }
@@ -36,11 +35,12 @@ class TripController {
 
   static async completeTrip(req, res) {
     try {
-      const { amount, id } = req.params;
+      const { id } = req.params;
+      const { amount } = req.body;
       const trip = await Trip.findAll({ where: { id } });
 
       if (trip.length === 0) {
-        return res.status(400).send({ message: 'Entered trip not found' });
+        return res.status(400).send({ message: 'Trip not found' });
       }
 
       if (trip[0].completed) {
@@ -56,11 +56,10 @@ class TripController {
         tripId: id,
       });
 
-      return res.status(200).send({ completedTrip, amount, invoice });
+      return res.status(200).send({ completedTrip, invoice });
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to complete a trip',
-        error,
       });
     }
   }
@@ -77,7 +76,6 @@ class TripController {
     } catch (error) {
       return res.status(500).json({
         errorMsg: 'failed to fetch all active trip',
-        error,
       });
     }
   }
