@@ -53,18 +53,18 @@ We would like to disrupt the taxi industry in Rwanda by providing a white-label 
 
 ## API Endpoints
 
-| METHOD | DESCRIPTION                             | ENDPOINTS                          |
-| ------ | --------------------------------------- | ---------------------------------  |
-| GET    | Get all drivers                         | `/api/drivers`                     |
-| GET    | Get all available drivers               | `/api/drivers/available`           |
-| GET    | Get all available drivers in 3 Km       | `/api/drivers/availableNear/Gisozi`|
-| GET    | Get a driver by ID                      | `/api/drivers/1`                   |
-| POST   | Create a new trip                       | `/api/trips`                       |
-| PUT    | Complete a trip                         | `/api/trips/complete/`             |
-| GET    | Get a list of all active trips          | `/api/trips/active`                |
-| GET    | Get a list of all riders                | `/api/riders/`                     |
-| GET    | Get a specific rider by ID              | `/api/riders/1`                    |
-| GET    | Get a list of 3 closest riders          | `/api/riders/1`                    |
+| METHOD | DESCRIPTION                             | ENDPOINTS                                                        |
+| ------ | --------------------------------------- | ---------------------------------------------------------------  |
+| GET    | Get all drivers                         | `/api/v1/drivers`                                                |
+| GET    | Get all available drivers               | `/api/v1/drivers/available`                                      |
+| GET    | Get all available drivers in 3 Km       | `/api/v1/drivers/availableNear?latitude=1.9006&longitude=30.0759`|
+| GET    | Get a driver by ID                      | `/api/v1/drivers/:ID`                                            |
+| POST   | Create a new trip                       | `/api/v1/trips`                                                  |
+| PUT    | Complete a trip                         | `/api/v1/trips/complete/:ID`                                     |
+| GET    | Get a list of all active trips          | `/api/v1/trips/active`                                           |
+| GET    | Get a list of all riders                | `/api/v1/riders/`                                                |
+| GET    | Get a specific rider by ID              | `/api/v1/riders/:ID`                                             |
+| GET    | Get a list of 3 closest riders          | `/api/v1/riders/:name`                                           |
 
 ## Tests
 
