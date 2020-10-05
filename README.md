@@ -35,11 +35,20 @@ We would like to disrupt the taxi industry in Rwanda by providing a white-label 
   ```shell
   $ npm install
   ```
+- Run migrations and seed data
+  > Run the command below
+  ```shell
+  $ npm run migrate
+  $ npm run seed
+  ```
 - Start your node server
   > run the command below
   ```shell
   $ npm start
   ```
+
+- Create your own environment variables(`.env`) as indicated in `.env.example`
+
 - Use `http://localhost:3000` as base url for endpoints
 
 ## API Endpoints

@@ -5,7 +5,7 @@ const riderSeeder = {
       createdAt: new Date().toDateString(),
       updatedAt: new Date().toDateString(),
     }, {
-      names: 'Sean',
+      names: 'Frank',
       createdAt: new Date().toDateString(),
       updatedAt: new Date().toDateString(),
     }, {

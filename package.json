@@ -41,7 +41,7 @@
     "express": "^4.17.0",
     "express-jwt": "^5.3.1",
     "express-session": "^1.15.6",
-    "geolib": "^3.1.0",
+    "geodist": "^0.2.1",
     "nodemon": "^1.18.11",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
